@@ -22,9 +22,20 @@ function defaultStrategy(gameMap) {
             }
 
             // sorting planets based on the distance to the ship
-            const sortedPlants = [...planetsOfInterest].sort((a, b) => Geometry.distance(ship, a) - Geometry.distance(ship, b));
-            chosenPlanet = sortedPlants[0];
+            const sortedPlanets = [...planetsOfInterest].sort((a, b) => Geometry.distance(ship, a) - Geometry.distance(ship, b));
+            const chosenPlanet = sortedPlanets[0];
+            const defaultPlanets = gameMap.planets.filter(p => p.isOwnedByEnemy());
+            const chosenDefaultPlanet = defaultPlanets[0];
 
+            if (planetsOfInterest.length === 0){
+              return ship.navigate({
+                target:chosenDefaultPlanet,
+                keepDistanceToTarget: chosenDefaultPlanet.radius,
+                speed: constants.MAX_SPEED / 1.75,
+                avoidObstacles: true,
+                ignoreShips: false
+              });
+            }
             if (ship.canDock(chosenPlanet)) {
                 return ship.dock(chosenPlanet);
             } else {
