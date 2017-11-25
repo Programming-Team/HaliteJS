@@ -14,8 +14,8 @@ function defaultStrategy(gameMap) {
         .filter(s => s.isUndocked())
         .map(ship => {
             // find the planets that are free or occupied by you
-            const planetsOfInterest = gameMap.planets.filter(p => p.isFree() ||
-                (p.isOwnedByMe() && p.hasDockingSpot() ));
+            const planetsOfInterest = gameMap.planets.filter(p => p.isFree() /*||
+                (p.isOwnedByMe() && p.hasDockingSpot() ))*/;
 
             if (planetsOfInterest.length === 0) {
                 return null; // if all the planets are taken we return null - no move for this ship
