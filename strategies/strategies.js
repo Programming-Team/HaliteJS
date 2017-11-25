@@ -15,7 +15,7 @@ function defaultStrategy(gameMap) {
         .map(ship => {
             // find the planets that are free or occupied by you
             const planetsOfInterest = gameMap.planets.filter(p => p.isFree() /*||
-                (p.isOwnedByMe() && p.hasDockingSpot() ))*/;
+                (p.isOwnedByMe() && p.hasDockingSpot() ))*/);
 
             if (planetsOfInterest.length === 0) {
                 return null; // if all the planets are taken we return null - no move for this ship
@@ -23,7 +23,7 @@ function defaultStrategy(gameMap) {
 
             // sorting planets based on the distance to the ship
             const sortedPlants = [...planetsOfInterest].sort((a, b) => Geometry.distance(ship, a) - Geometry.distance(ship, b));
-            const chosenPlanet = sortedPlants[0];
+            chosenPlanet = sortedPlants[0];
 
             if (ship.canDock(chosenPlanet)) {
                 return ship.dock(chosenPlanet);
