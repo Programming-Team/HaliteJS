@@ -17,6 +17,9 @@ function defaultStrategy(gameMap) {
             const planetsOfInterest = gameMap.planets.filter(p => p.isFree() /*||
                 (p.isOwnedByMe() && p.hasDockingSpot() ))*/);
 
+            const defaultPlanets = gameMap.planets.filter(p => p.isOwnedByEnemy());
+            const chosenDefaultPlanet = defaultPlanets[0];
+
             if (planetsOfInterest.length === 0) {
               return ship.navigate({
                 target:chosenDefaultPlanet,
@@ -30,8 +33,7 @@ function defaultStrategy(gameMap) {
             // sorting planets based on the distance to the ship
             const sortedPlanets = [...planetsOfInterest].sort((a, b) => Geometry.distance(ship, a) - Geometry.distance(ship, b));
             const chosenPlanet = sortedPlanets[0];
-            const defaultPlanets = gameMap.planets.filter(p => p.isOwnedByEnemy());
-            const chosenDefaultPlanet = defaultPlanets[0];
+
 
             if (ship.canDock(chosenPlanet)) {
                 return ship.dock(chosenPlanet);
