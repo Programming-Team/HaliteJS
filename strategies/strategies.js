@@ -21,13 +21,16 @@ function defaultStrategy(gameMap) {
             const chosenDefaultPlanet = defaultPlanets[0];
 
             if (planetsOfInterest.length === 0) {
-              return ship.navigate({
-                target:chosenDefaultPlanet,
-                keepDistanceToTarget: chosenDefaultPlanet.radius,
-                speed: constants.MAX_SPEED,
-                avoidObstacles: true,
-                ignoreShips: false
-              });
+              if (defaultPlanets.length == 0){
+                return ship.navigate({
+                  target:chosenDefaultPlanet,
+                  keepDistanceToTarget: chosenDefaultPlanet.radius,
+                  speed: constants.MAX_SPEED,
+                  avoidObstacles: true,
+                  ignoreShips: false
+                });
+              }
+              else{return null;}
             }
 
             // sorting planets based on the distance to the ship
