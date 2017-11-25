@@ -22,6 +22,9 @@ function defaultStrategy(gameMap) {
 
             if (planetsOfInterest.length === 0) {
               if (defaultPlanets.length === 0){
+                return null;
+              }
+              else{
                 return ship.navigate({
                   target:chosenDefaultPlanet,
                   keepDistanceToTarget: chosenDefaultPlanet.radius,
@@ -30,7 +33,6 @@ function defaultStrategy(gameMap) {
                   ignoreShips: false
                 });
               }
-              else{return null;}
             }
 
             // sorting planets based on the distance to the ship
