@@ -17,17 +17,17 @@ function defaultStrategy(gameMap) {
             const planetsOfInterest = gameMap.planets.filter(p => p.isFree() ||
                 (p.isOwnedByMe() && p.hasDockingSpot() ));
 
-            const defaultPlanets = gameMap.planets.filter(p => p.isOwnedByEnemy());
-            const chosenDefaultPlanet = defaultPlanets[0];
+            const enemyPlanets = gameMap.planets.filter(p => p.isOwnedByEnemy());
+            const chosenEnemyPlanet = enemyPlanets[0];
 
             if (planetsOfInterest.length === 0) {
-              if (defaultPlanets.length === 0){
+              if (enemyPlanets.length === 0){
                 return null;
               }
               else{
                 return ship.navigate({
-                  target:chosenDefaultPlanet,
-                  keepDistanceToTarget: chosenDefaultPlanet.radius,
+                  target:chosenEnemyPlanet,
+                  keepDistanceToTarget: chosenEnemyPlanet.radius,
                   speed: constants.MAX_SPEED,
                   avoidObstacles: true,
                   ignoreShips: false
