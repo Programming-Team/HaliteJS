@@ -15,7 +15,7 @@ function defaultStrategy(gameMap) {
         .map(ship => {
             // find the planets that are free or occupied by you
             const planetsOfInterest = gameMap.planets.filter(p => p.isFree() ||
-                (p.isOwnedByMe() && p.hasDockingSpot() )));
+                (p.isOwnedByMe() && p.hasDockingSpot() ));
 
             const defaultPlanets = gameMap.planets.filter(p => p.isOwnedByEnemy());
             const chosenDefaultPlanet = defaultPlanets[0];
