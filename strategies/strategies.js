@@ -17,13 +17,28 @@ function defaultStrategy(gameMap) {
             const planetsOfInterest = gameMap.planets.filter(p => p.isFree() ||
                 (p.isOwnedByMe() && p.hasDockingSpot() ));
 
+            const enemyPlanets = gameMap.planets.filter(p => p.isOwnedByEnemy());
+            const chosenEnemyPlanet = enemyPlanets[0];
+
             if (planetsOfInterest.length === 0) {
-                return null; // if all the planets are taken we return null - no move for this ship
+              if (enemyPlanets.length === 0){
+                return null;
+              }
+              else{
+                return ship.navigate({
+                  target:chosenEnemyPlanet,
+                  keepDistanceToTarget: chosenEnemyPlanet.radius,
+                  speed: constants.MAX_SPEED,
+                  avoidObstacles: true,
+                  ignoreShips: false
+                });
+              }
             }
 
             // sorting planets based on the distance to the ship
-            const sortedPlants = [...planetsOfInterest].sort((a, b) => Geometry.distance(ship, a) - Geometry.distance(ship, b));
-            const chosenPlanet = sortedPlants[0];
+            const sortedPlanets = [...planetsOfInterest].sort((a, b) => Geometry.distance(ship, a) - Geometry.distance(ship, b));
+            const chosenPlanet = sortedPlanets[0];
+
 
             if (ship.canDock(chosenPlanet)) {
                 return ship.dock(chosenPlanet);
@@ -38,7 +53,7 @@ function defaultStrategy(gameMap) {
                 return ship.navigate({
                     target: chosenPlanet,
                     keepDistanceToTarget: chosenPlanet.radius + 3,
-                    speed: constants.MAX_SPEED / 2,
+                    speed: constants.MAX_SPEED,
                     avoidObstacles: true,
                     ignoreShips: false
                 });
