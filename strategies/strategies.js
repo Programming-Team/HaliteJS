@@ -18,7 +18,8 @@ function defaultStrategy(gameMap) {
                 (p.isOwnedByMe() && p.hasDockingSpot() ));
 
             const enemyPlanets = gameMap.planets.filter(p => p.isOwnedByEnemy());
-            const chosenEnemyPlanet = enemyPlanets[0];
+            const sortedEnemyPlanets = [...enemyPlanets].sort((a,b) => Geometry.distance(ship, a) - Geometry.distance(ship, b));
+            const chosenEnemyPlanet = sortedEnemyPlanets[0];
 
             if (planetsOfInterest.length === 0) {
               if (enemyPlanets.length === 0){
