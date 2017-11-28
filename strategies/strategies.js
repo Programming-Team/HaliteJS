@@ -56,7 +56,7 @@ function defaultStrategy(gameMap) {
                     keepDistanceToTarget: chosenPlanet.radius + 3,
                     speed: constants.MAX_SPEED,
                     avoidObstacles: true,
-                    ignoreShips: false
+                    ignoreShips: true
                 });
             }
         });
