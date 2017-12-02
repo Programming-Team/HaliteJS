@@ -24,6 +24,9 @@ function defaultStrategy(gameMap) {
               if (enemyPlanets.length === 0){
                 return null;
               }
+              if(enemyPlanets.length === 0){
+
+              }
               else{
                 return ship.navigate({
                   target:chosenEnemyPlanet,
@@ -31,6 +34,7 @@ function defaultStrategy(gameMap) {
                   speed: constants.MAX_SPEED,
                   avoidObstacles: true,
                   ignoreShips: false
+
                 });
               }
             }
@@ -73,6 +77,24 @@ function westernDuel(gameMap) {
     });
 
     return [thrustMove];
+}
+function destinationReached(){
+  if(enemyPlanets.length === 0){
+    angleBetweenInDegree(chosenEnemyPlanet) = x;
+    return ship.navigate{{
+      target:chosenEnemyPlanet,
+      keepDistanceToTarget: chosenPlanet.radius + 3,
+      speed: constants.MAX_SPEED,
+      avoidObstacles: true,
+      ignoreShips: true
+      while (p.isOwnedByEnemy){
+        if(ship.isOwnedByEnemy && isDocked();)
+      }
+
+      }
+    }}
+  }
+
 }
 
 module.exports = {defaultStrategy, westernDuel};
