@@ -75,7 +75,7 @@ function westernDuel(gameMap) {
 
     return [thrustMove];
 }
-function destinationReached(){
+function circlePlanet(){
       while (p.isOwnedByEnemy){
         if(ship.isOwnedByEnemy && isDocked()){
           return ship.navigate({
