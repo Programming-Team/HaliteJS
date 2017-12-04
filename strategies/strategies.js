@@ -75,5 +75,17 @@ function westernDuel(gameMap) {
 
     return [thrustMove];
 }
+function destinationReached(){
+      while (p.isOwnedByEnemy){
+        if(ship.isOwnedByEnemy && isDocked()){
+          return ship.navigate({
+            target: ship.isOwnedByEnemy,
+            speed: constants.MAX_SPEED,
+            avoidObstacles: true,
+            ignoreShips: true
+          });
+        }
+      }
+  }
 
 module.exports = {defaultStrategy, westernDuel};
