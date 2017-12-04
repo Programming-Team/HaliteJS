@@ -78,23 +78,4 @@ function westernDuel(gameMap) {
 
     return [thrustMove];
 }
-function destinationReached(){
-  if(enemyPlanets.length === 0){
-    angleBetweenInDegree(chosenEnemyPlanet) = x;
-    return ship.navigate{{
-      target:chosenEnemyPlanet,
-      keepDistanceToTarget: chosenPlanet.radius + 3,
-      speed: constants.MAX_SPEED,
-      avoidObstacles: true,
-      ignoreShips: true
-      while (p.isOwnedByEnemy){
-        if(ship.isOwnedByEnemy && isDocked();)
-      }
-
-      }
-    }}
-  }
-
-}
-
 module.exports = {defaultStrategy, westernDuel};
